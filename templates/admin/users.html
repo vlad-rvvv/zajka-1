@@ -1,0 +1,80 @@
+{% extends 'main_admin.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="main__title">
+    <h3>Управление пользователями</h3>
+    <div class="main__navigation">
+        <div class="main__navigation__item">
+            <a class="active" href="{% url 'users' %}">Контроль</a>
+        </div>
+        <div class="main__navigation__item">
+            <a href="{% url 'statistics' %}">Статистика</a>
+        </div>
+    </div>
+    <hr>
+</div>
+<div class="main__list-container">
+
+    <div class="main__list__header">
+        <!-- Поисковая строка  -->
+        <div class="header__search">
+            <form action="{% url 'users' %}" method="GET">
+                <input type="text" placeholder="поиск" name="q">
+            </form>
+        </div>
+        <div class="addUser--btn">
+            <a class="btn" id="create-user" href="#">Добавить пользователя +</a>
+        </div>
+    </div>
+
+    <div class="main__list">
+        <!-- Пользователь в списке пользователей начало -->
+        {% for user in users %}
+        <div class="userRow">
+            <div class="userRow__left">
+                <div class="userRow__options">
+                    <a href="/">
+                        <div class="options__img">
+                            <img class="delete__option" src="{% static 'img/delete.svg' %}" alt="delete">
+                        </div>
+                    </a>
+                    <a href="/">
+                        <div class="options__img">
+                            <img class="edit__option" src="{% static 'img/edit.svg' %}" alt="edit">
+                        </div>
+                    </a>
+                    <a href="/">
+                        <div class="options__img">
+                            <img class="lock__option" src="{% static 'img/lock.svg' %}" alt="lock">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="userRow__name">
+                    <a href="/">
+                        <div class="userRow__name">{{user.last_name}} {{user.first_name}} {{user.parent_name}}</div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}           
+        <!-- Пользователь в списке пользователей конец -->
+    </div>
+</div>
+
+<div class="createUser-popup">
+    <div class="close-btn">&times;</div>
+    <form action="{% url 'users' %}" method="POST">
+        <h2>Добавить пользователя</h2>
+        {% csrf_token %}
+        {% for f in form %}
+            {{f}}
+        {% endfor %}
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+
+{% endblock content %}

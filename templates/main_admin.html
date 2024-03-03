@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зайка-1</title>
+
+    <!-- normalize.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navigation">
+        <div class="navigation__title">
+            <div class="navigation__logo">
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <div  class="navigation__name">Зайка-1</div>
+        </div>
+        <hr>
+        <div class="navigation__list">
+            <div class="navigation__item navigation-active">
+                <a href="{% url 'users' %}">
+                    <img src="{% static 'img/user.svg' %}" alt="">
+                    <div>
+                        Пользователи
+                    </div>
+                </a>
+            </div>
+            <div class="navigation__item">
+                <a href="{% url 'configuration' %}">
+                    <img src="{% static 'img/description.svg' %}" alt="">
+                    <div>
+                        Конфигурация АРМ
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Аватарка админа -->
+            <div class="navigation__avatar">
+                <div class="avatar__name">Иванов Иван <br> Иванович</div>
+                <div class="avatar__exit">
+                    <a href="/"><img src="{% static 'img/exit.svg' %}" alt=""></a>
+                </div>
+            </div>   
+    </nav>
+    <!-- Навигация -->
+
+    <div class="content">
+        <div class="content__main">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

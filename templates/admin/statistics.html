@@ -1,0 +1,23 @@
+{% extends 'main_admin.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="main__title">
+    <h3>Управление пользователями</h3>
+    <div class="main__navigation">
+        <div class="main__navigation__item">
+            <a class="" href="{% url 'users' %}">Контроль</a>
+        </div>
+        <div class="main__navigation__item">
+            <a class="active" href="{% url 'statistics' %}">Статистика</a>
+        </div>
+    </div>
+    <hr>
+</div>
+<div class="main__list-container">
+
+    
+</div>
+
+{% endblock content %}
